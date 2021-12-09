@@ -1,0 +1,16 @@
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{   
+    "userid":"U2",
+    "roleid":1,
+    "first_name":"Karen",
+    "last_name":"Doniza",
+    "address":"QC",
+    "contact_number":"09876543",
+    "date_created":"2021-12-9 14:51",
+    "date_updated":"2021-12-9 14:51"
+}
+
+### 
+GET http://localhost:5000/users
