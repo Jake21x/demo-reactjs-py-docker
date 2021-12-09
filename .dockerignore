@@ -1,0 +1,7 @@
+.vscode
+.git
+venv
+test
+uploads
+__pycache__
+frontend

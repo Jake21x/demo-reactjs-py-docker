@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  loadbalance:
+    image: haproxy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+    logging:
+      options:
+        max-size: 50m
+
+  api-service1:
+    image: demo-react-py-docker
+    restart: always
+    ports:
+      - "7081:7081"
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_ENV=developement
+      - PORT=7081
+    volumes:
+      - ./:/home/app/ 
+    logging:
+      options:
+        max-size: 50m
+
+  api-service2:
+    image: demo-react-py-docker
+    restart: always
+    ports:
+      - "7082:7082"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=developement
+      - PORT=7082
+    volumes:
+      - ./:/home/app/ 
+    logging:
+      options:
+        max-size: 50m
+
+  client-dashboard:
+    image: demo-react-py-docker
+    restart: always
+    ports:
+      - "9000:5000"
+    volumes:
+      - ./app:/home/app
+    logging:
+      options:
+        max-size: 50m
