@@ -1,0 +1,21 @@
+{
+  "name": "demo-reactjs-python",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "python main.py",
+    "createdb": "export FLASK_APP=main.py && flask shell && db.create_all()"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jake21x/demo-reactjs-python.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jake21x/demo-reactjs-python/issues"
+  },
+  "homepage": "https://github.com/Jake21x/demo-reactjs-python#readme"
+}
