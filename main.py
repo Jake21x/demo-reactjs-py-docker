@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,jsonify
 from flask_restx import Api,Resource,fields
 from config import DevConfig
 from models import Dsm,User,Store,Sku,Role
@@ -50,8 +50,7 @@ class UsersResource(Resource):
     def post(self):
         """ Create new User """
         data = request.get_json()
-
-        print('here',)
+ 
         new_user = User(
             userid=data['userid'],
             roleid=data['roleid'],
@@ -66,21 +65,47 @@ class UsersResource(Resource):
         return new_user,201
     
 
-@api.route('/users/<string:id>')
+@api.route('/user/<string:id>')
 class UsersResource(Resource):
 
-    @api.marshal_list_with(user_model)
+    @api.marshal_with(user_model)
     def get(self,id):
         """ Get User info """
-        return []
- 
-    def post(self,id):
+
+        user = User.query.get_or_error(id) 
+        return user
+    
+    def put(self,id):
         """ Update User """
-        return []
+
+        # raw_user = User.query.get(id) 
+        raw_user = User.query.get_or_error(id) 
+        data = request.get_json()
+        raw_user.update(data['roleid'],data['first_name'],data['last_name'],data['address'],data['contact_number'],data['date_updated'])
+        return {
+            'status':'success',
+            'message': 'Successfullly updated',
+            'data' : { 
+                'id':raw_user.id,
+                'roleid':raw_user.roleid,
+                'first_name':raw_user.first_name,
+                'last_name':raw_user.last_name,
+                'address':raw_user.address,
+                'contact_number':raw_user.contact_number,
+                'date_created':raw_user.date_created.strftime('%m/%d/%Y'),
+                'date_updated':raw_user.date_updated.strftime('%m/%d/%Y'),
+            }
+        }
  
     def delete(self,id):
         """ Delete User """
-        pass
+        raw_user = User.query.get_or_error(id) 
+        raw_user.delete()
+
+        return {
+            'status':'success',
+            'message': 'successfullly deleted', 
+        }
 
 
 store_model = api.model(

@@ -87,7 +87,8 @@ class User(db.Model):
         self.last_name = last_name
         self.address = address
         self.contact_number = contact_number
-        self.date_updated = date_updated
+        self.date_updated = date_updated 
+        db.session.commit()
 
 """
 class Store
@@ -118,6 +119,7 @@ class Store(db.Model):
         self.area = area
         self.channel = channel
         self.date_updated = date_updated
+        db.session.commit()
 
 
 """
@@ -153,6 +155,7 @@ class Sku(db.Model):
         self.price_piece = price_piece
         self.price_case = price_case
         self.date_updated = date_updated
+        db.session.commit()
 
 
 """
@@ -181,3 +184,4 @@ class Role(db.Model):
     def update(self,name,date_updated):
         self.name = name
         self.date_updated = date_updated
+        db.session.commit()

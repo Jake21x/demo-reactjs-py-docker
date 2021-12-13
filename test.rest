@@ -3,14 +3,34 @@ Content-Type: application/json
 
 {   
     "userid":"U2",
-    "roleid":1,
-    "first_name":"Karen",
-    "last_name":"Doniza",
-    "address":"QC",
+    "roleid":2,
+    "first_name":"muffy",
+    "last_name":"Garbo",
+    "address":"Rizal",
     "contact_number":"09876543",
     "date_created":"2021-12-9 14:51",
     "date_updated":"2021-12-9 14:51"
 }
 
-### 
+### PUT Update user
+PUT http://localhost:5000/user/90
+Content-Type: application/json
+
+{    
+    "roleid":2,
+    "first_name":"Jake",
+    "last_name":"garbo",
+    "address":"rizal",
+    "contact_number":"09876543",
+    "date_created":"2021-12-9 14:51",
+    "date_updated":"2021-12-9 14:51"
+}
+
+###  GET USERS
 GET http://localhost:5000/users
+
+### GET 1 USER
+GET http://localhost:5000/user/1
+
+## DELETE 1 USER
+DELETE http://localhost:5000/user/15
